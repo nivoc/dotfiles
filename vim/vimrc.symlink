@@ -5,6 +5,8 @@ filetype on           " Enable filetype detection
 filetype indent on    " Enable filetype-specific indenting
 filetype plugin on    " Enable filetype-specific plugins
 
+"Highlight all search matches
+set hlsearch
 
  set rtp+=~/.vim/bundle/vundle/
  call vundle#rc()
