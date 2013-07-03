@@ -1,12 +1,31 @@
+function! CommentToggle()
+    execute ':silent! s/\([^ ]\)/\/\/ \1/'
+    execute ':silent! s/^\( *\)\/\/ \/\/ /\1/'
+endfunction
 
-set nocompatible      " We're running Vim, not Vi!
+map <F7> :call CommentToggle()<CR>
+
+
+"insert and remove comments in visual and normal mode
+vmap ,ic :s/^/#/g<CR>:let @/ = ""<CR>
+map  ,ic :s/^/#/g<CR>:let @/ = ""<CR>
+vmap ,rc :s/^#//g<CR>:let @/ = ""<CR>
+map  ,rc :s/^#//g<CR>:let @/ = ""<CR>
+
 syntax on             " Enable syntax highlighting
 filetype on           " Enable filetype detection
 filetype indent on    " Enable filetype-specific indenting
 filetype plugin on    " Enable filetype-specific plugins
 
-"Highlight all search matches
+
+" Enable search while type
+set incsearch
+
+" Highlight all search matches
 set hlsearch
+
+" Necesary for lots of cool vim things
+set nocompatible
 
  set rtp+=~/.vim/bundle/vundle/
  call vundle#rc()
@@ -32,6 +51,7 @@ set hlsearch
  " ...
  "RUBY
  Bundle 'vim-ruby/vim-ruby'
+Bundle 'kien/ctrlp.vim'
  "Bundle 'git://github.com/vim-ruby/vim-ruby.git'
  "filetype plugin indent on     " required!
  "
@@ -44,3 +64,4 @@ set hlsearch
  " see :h vundle for more details or wiki for FAQ
  " NOTE: comments after Bundle command are not allowed..
 
+Bundle 'rking/ag.vim'
