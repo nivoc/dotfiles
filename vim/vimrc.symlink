@@ -1,3 +1,19 @@
+map <C-n> :NERDTreeToggle<CR>
+map <C-p> :CommandT<CR>
+map <C-b> :CommandTBuffer<CR>
+
+nnoremap <up> <nop>
+nnoremap <down> <nop>
+nnoremap <left> <nop>
+nnoremap <right> <nop>
+inoremap <up> <nop>
+inoremap <down> <nop>
+inoremap <left> <nop>
+inoremap <right> <nop>
+nnoremap j gj
+nnoremap k gk
+nnoremap ; :
+		  
 function! CommentToggle()
     execute ':silent! s/\([^ ]\)/\/\/ \1/'
     execute ':silent! s/^\( *\)\/\/ \/\/ /\1/'
@@ -17,6 +33,12 @@ filetype on           " Enable filetype detection
 filetype indent on    " Enable filetype-specific indenting
 filetype plugin on    " Enable filetype-specific plugins
 
+" Show Linenumbers and color them grey
+set number
+highlight LineNr ctermfg=grey
+
+" Allow switching unsaved buffers
+set hidden
 
 " Enable search while type
 set incsearch
@@ -34,24 +56,25 @@ set nocompatible
  " required! 
  Bundle 'gmarik/vundle'
 
- " My Bundles here:
- "
- " original repos on github
- Bundle 'tpope/vim-fugitive'
- Bundle 'Lokaltog/vim-easymotion'
- Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
- Bundle 'tpope/vim-rails.git'
- " vim-scripts repos
- Bundle 'L9'
- Bundle 'FuzzyFinder'
- " non github repos
- Bundle 'git://git.wincent.com/command-t.git'
- " git repos on your local machine (ie. when working on your own plugin)
- "Bundle 'file:///Users/gmarik/path/to/plugin'
- " ...
- "RUBY
- Bundle 'vim-ruby/vim-ruby'
-Bundle 'kien/ctrlp.vim'
+" My Bundles here:
+"
+" original repos on github
+Bundle 'tpope/vim-fugitive'
+Bundle 'Lokaltog/vim-easymotion'
+Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
+Bundle 'tpope/vim-rails.git'
+" vim-scripts repos
+Bundle 'L9'
+Bundle 'FuzzyFinder'
+" non github repos
+Bundle 'git://git.wincent.com/command-t.git'
+" git repos on your local machine (ie. when working on your own plugin)
+"Bundle 'file:///Users/gmarik/path/to/plugin'
+" ...
+"RUBY
+Bundle 'vim-ruby/vim-ruby'
+"Bundle 'kien/ctrlp.vim'
+Bundle 'scrooloose/nerdtree'
  "Bundle 'git://github.com/vim-ruby/vim-ruby.git'
  "filetype plugin indent on     " required!
  "
