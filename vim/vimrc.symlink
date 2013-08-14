@@ -20,6 +20,7 @@ set ignorecase
 set smartcase
 "set gdefault
 "
+map ,, :FufFile<cr>
 
 map <c-h>h :FufCoverageFile<cr>
 map <c-h>b :FufBuffer<cr>
