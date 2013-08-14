@@ -21,6 +21,11 @@ set smartcase
 "set gdefault
 "
 
+map <c-h>h :FufCoverageFile<cr>
+map <c-h>b :FufBuffer<cr>
+map <c-h>f :FufFile<cr>
+
+
 "enable shift+enter to post an end
 imap <S-CR> <CR><CR>end<Esc>-cc
 map <C-j> <F5>
