@@ -1,32 +1,80 @@
+set tildeop
+set guifont=Menlo\ Regular:h20        
+set lines=32 columns=117
+set tabstop=2
+set softtabstop=2
+set expandtab
+set shiftwidth=2
+set scrolloff=3 " Minimal Number of visible Lines before/after the cursor
+set autoindent
+set showmode
+set showcmd
+set wildmenu
+set wildmode=list:longest
+set visualbell
+set ttyfast
+set ruler
+set backspace=indent,eol,start
+set laststatus=2
+set ignorecase
+set smartcase
+"set gdefault
+"
+
+"enable shift+enter to post an end
+imap <S-CR> <CR><CR>end<Esc>-cc
+map <C-j> <F5>
+
+
+nnoremap <C-L> ]m
+"map <C-\> ]m
+"map <C-j> ]m
+map <D-]> ]m
+map <D-[> [m
+map <C-k> [m
+map <C-'> [m
+map <tab> ]m
+map <C-\> :let @/ = ""<cr>
+
+"nmap <M-Tab> [m<CR>
+nnoremap <leader><space> :noh<cr>
+"nnoremap <tab> %
+"vnoremap <tab> %
+
+"au InsertEnter * hi LineNr ctermbg=darkRed
+au InsertEnter * hi StatusLine guibg=white guifg=#eeeeee ctermbg=white
+" au InsertEnter * hi StatusLine guibg=Red
+"au InsertLeave * hi LineNr ctermbg=white
+au InsertLeave * hi StatusLine guibg=#43c464 guifg=#ffffff ctermbg=green
+highlight LineNr ctermfg=grey
+
+"map! ;; <ESC>
+"map! jj <ESC>
 map <C-n> :NERDTreeToggle<CR>
 map <C-p> :CommandT<CR>
 map <C-b> :CommandTBuffer<CR>
+highlight PmenuSel ctermbg=LightBlue
+"highlight Normal guibg=Black guifg=White
 
-nnoremap <up> <nop>
-nnoremap <down> <nop>
-nnoremap <left> <nop>
-nnoremap <right> <nop>
-inoremap <up> <nop>
-inoremap <down> <nop>
-inoremap <left> <nop>
-inoremap <right> <nop>
+"nnoremap <up> <nop>
+"nnoremap <down> <nop>
+"nnoremap <left> <nop>
+"nnoremap <right> <nop>
+"inoremap <up> <nop>
+"inoremap <down> <nop>
+"inoremap <left> <nop>
+"inoremap <right> <nop>
 nnoremap j gj
 nnoremap k gk
 nnoremap ; :
+inoremap <D-/> <ESC>
 		  
-function! CommentToggle()
-    execute ':silent! s/\([^ ]\)/\/\/ \1/'
-    execute ':silent! s/^\( *\)\/\/ \/\/ /\1/'
-endfunction
-
 map <F7> :call CommentToggle()<CR>
 
-
-"insert and remove comments in visual and normal mode
-vmap ,ic :s/^/#/g<CR>:let @/ = ""<CR>
-map  ,ic :s/^/#/g<CR>:let @/ = ""<CR>
-vmap ,rc :s/^#//g<CR>:let @/ = ""<CR>
-map  ,rc :s/^#//g<CR>:let @/ = ""<CR>
+"COLORS
+set t_Co=256 "make use of 256 colors
+"color railscasts
+color summerfruit256
 
 syntax on             " Enable syntax highlighting
 filetype on           " Enable filetype detection
@@ -35,8 +83,8 @@ filetype plugin on    " Enable filetype-specific plugins
 
 " Show Linenumbers and color them grey
 set number
-highlight LineNr ctermfg=grey
-
+" highlight LineNr ctermfg=grey
+" au InsertEnter * hi StatusLine guibg=Red
 " Allow switching unsaved buffers
 set hidden
 
@@ -48,6 +96,8 @@ set hlsearch
 
 " Necesary for lots of cool vim things
 set nocompatible
+
+"set relativenumber
 
  set rtp+=~/.vim/bundle/vundle/
  call vundle#rc()
