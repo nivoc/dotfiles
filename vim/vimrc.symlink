@@ -1,5 +1,30 @@
-set tildeop
-set guifont=Menlo\ Regular:h20        
+" Create Blank Newlines and stay in Normal mode
+nnoremap <silent> zj o<Esc>k
+nnoremap <silent> zk O<Esc>j
+
+
+" Space will toggle folds!
+nnoremap <space> za
+
+inoremap jj <Esc>
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip
+let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+let g:ctrlp_working_path_mode='ra'
+let g:ctrlp_cmd = 'CtrlPMixed'
+"set autochdir
+
+" Edit vimrc \ev
+nnoremap <silent> <Leader>ev :tabnew<CR>:e ~/.vimrc<CR>
+
+map §b :cd ~/Projects/rails/basement/
+map §s :w<cr>
+map §q :q<cr>
+map zh :set hlsearch!<CR>
+map zs :Gstatus<cr>
+map zc :Gcommit<cr>
+map zr :mksession<cr>
+" set tildeop
+set guifont=Menlo\ Regular:h20
 set lines=32 columns=117
 set tabstop=2
 set softtabstop=2
@@ -21,15 +46,16 @@ set smartcase
 "set gdefault
 "
 map ,, :FufFile<cr>
-
+map §§ :buffer<cr>
 map <c-h>h :FufCoverageFile<cr>
 map <c-h>b :FufBuffer<cr>
 map <c-h>f :FufFile<cr>
 
 " zs Speichert merkt sich alle offenen Fenster (Session), speichert und
 " schliesst VIM, zr stellt die Session wieder her
-map zs :mksession! ~/.vimsession<cr>:wq<cr>
-map zr :source ~/.vimsession<cr>
+map zs :mksession! ~/.vimsession<cr>
+map zl :mksession<cr>
+map §r :source ~/.vimsession<cr>
 
 "enable shift+enter to post an end
 imap <S-CR> <CR><CR>end<Esc>-cc
@@ -52,10 +78,10 @@ nnoremap <leader><space> :noh<cr>
 "vnoremap <tab> %
 
 "au InsertEnter * hi LineNr ctermbg=darkRed
-au InsertEnter * hi StatusLine guibg=white guifg=#eeeeee ctermbg=white
+"thisau InsertEnter * hi StatusLine guibg=white guifg=#eeeeee ctermbg=white
 " au InsertEnter * hi StatusLine guibg=Red
 "au InsertLeave * hi LineNr ctermbg=white
-au InsertLeave * hi StatusLine guibg=#43c464 guifg=#ffffff ctermbg=green
+"thisnau InsertLeave * hi StatusLine guibg=#43c464 guifg=#ffffff ctermbg=green
 highlight LineNr ctermfg=grey
 
 "map! ;; <ESC>
@@ -76,9 +102,10 @@ highlight PmenuSel ctermbg=LightBlue
 "inoremap <right> <nop>
 nnoremap j gj
 nnoremap k gk
+" Swap ; and :  Convenient.
 nnoremap ; :
+nnoremap : ;
 inoremap <D-/> <ESC>
-		  
 map <F7> :call CommentToggle()<CR>
 
 "COLORS
@@ -107,13 +134,13 @@ set hlsearch
 " Necesary for lots of cool vim things
 set nocompatible
 
-"set relativenumber
+" set relativenumber
 
  set rtp+=~/.vim/bundle/vundle/
  call vundle#rc()
 
  " let Vundle manage Vundle
- " required! 
+ " required
  Bundle 'gmarik/vundle'
 
 " My Bundles here:
@@ -133,7 +160,7 @@ Bundle 'git://git.wincent.com/command-t.git'
 " ...
 "RUBY
 Bundle 'vim-ruby/vim-ruby'
-"Bundle 'kien/ctrlp.vim'
+Bundle 'kien/ctrlp.vim'
 Bundle 'scrooloose/nerdtree'
  "Bundle 'git://github.com/vim-ruby/vim-ruby.git'
  "filetype plugin indent on     " required!
@@ -148,3 +175,49 @@ Bundle 'scrooloose/nerdtree'
  " NOTE: comments after Bundle command are not allowed..
 
 Bundle 'rking/ag.vim'
+Bundle 'bling/vim-airline'
+"   
+"   function! HighlightSearch()
+"     if &hls
+"       return 'H'
+"     else
+"       return ''
+"     endif
+"   endfunction
+"   
+"   hi User1 guifg=#ffdad8  guibg=#880c0e ctermfg=white  ctermbg=1
+"   hi User2 guifg=#000000  guibg=#F4905C ctermfg=white  ctermbg=2
+"   hi User3 guifg=#292b00  guibg=#f4f597 ctermfg=white  ctermbg=3
+"   hi User4 guifg=#112605  guibg=#aefe7B ctermfg=white  ctermbg=4
+"   hi User5 guifg=#051d00  guibg=#7dcc7d ctermfg=white  ctermbg=5
+"   hi User7 guifg=#ffffff  guibg=#880c0e ctermfg=white  ctermbg=6 gui=bold
+"   hi User8 guifg=#ffffff  guibg=#5b7fbb ctermfg=white  ctermbg=7
+"   hi User9 guifg=#ffffff  guibg=#810085 ctermfg=white  ctermbg=8
+"   hi User0 guifg=#ffffff  guibg=#094afe ctermfg=white  ctermbg=4
+"   
+"   
+"   set statusline=
+"   set statusline+=%7*\[%n]                                  "buffernr
+"   set statusline+=%1*\ %<%F\                                "File+path
+"   set statusline+=%2*\ %y\                                  "FileType
+"   set statusline+=%3*\ %{''.(&fenc!=''?&fenc:&enc).''}      "Encoding
+"   set statusline+=%3*\ %{(&bomb?\",BOM\":\"\")}\            "Encoding2
+"   set statusline+=%4*\ %{&ff}\                              "FileFormat (dos/unix..)
+"   set statusline+=%5*\ %{&spelllang}\%{HighlightSearch()}\  "Spellanguage & Highlight on?
+"   set statusline+=%8*\ %=\ row:%l/%L\ (%03p%%)\             "Rownumber/total (%)
+"   set statusline+=%9*\ col:%03c\                            "Colnr
+"   set statusline+=%0*\ \ %m%r%w\ %P\ \                      "Modified? Readonly? Top/bot
+"   "highlight OverLength ctermbg=red ctermfg=white guibg=#f4f597
+"   "match OverLength /\%81v.\+/
+
+match ErrorMsg '\%>80v.\+'
+"if exists('+colorcolumn')
+"     set colorcolumn=80
+"else
+"    au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
+"endif
+"
+"
+"
+
+" let g:airline_theme='light'
