@@ -1,42 +1,70 @@
+" Some Linux distributions set filetype in /etc/vimrc.
+" Clear filetype flags before changing runtimepath to force Vim to reload them.
+filetype off
+filetype plugin indent off
+set runtimepath+=$GOROOT/misc/vim
+filetype plugin indent on
+syntax on
+"
+" Disable Macvim-Scrollbars
+set guioptions-=mlrbLRT
+set guioptions-=r
+set guioptions-=l
+set guioptions-=L
+set guioptions=c
+" Map sparkup expanding to command-e
+let g:sparkupExecuteMapping="<D-e>"
+
+" disable vim autocomment
+autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+
 " Create Blank Newlines and stay in Normal mode
 nnoremap <silent> zj o<Esc>k
 nnoremap <silent> zk O<Esc>j
-
+nnoremap ]q :cnext<cr>
+nnoremap [q :cprev<cr>
+nnoremap ]Q :clast<cr>
+nnoremap [Q :cfirst<cr>
 
 " Space will toggle folds!
 nnoremap <space> za
 
 inoremap jj <Esc>
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/.git/*
 let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
 let g:ctrlp_working_path_mode='ra'
-let g:ctrlp_cmd = 'CtrlPMixed'
+" let g:ctrlp_cmd = 'CtrlPMixed'
+
+nnoremap <C-p> :CtrlP<CR>
+nnoremap <C-b> :CtrlPBuffer<CR>
+nnoremap <C-m> :CtrlPMixed<CR>
+nnoremap <CR> :CtrlPBuffer<CR>
 "set autochdir
-
+nnoremap ` <C-W><C-W>
 " Edit vimrc \ev
-nnoremap <silent> <Leader>ev :tabnew<CR>:e ~/.vimrc<CR>
-
-map §b :cd ~/Projects/rails/basement/
-map §s :w<cr>
-map §q :q<cr>
-map zh :set hlsearch!<CR>
-map zs :Gstatus<cr>
-map zc :Gcommit<cr>
-map zr :mksession<cr>
+nnoremap <silent> <Leader>ev :tabedit $MYVIMRC<CR>
+nnoremap <silent> <Leader>so :source $MYVIMRC<CR>
+nmap §b :cd ~/Projects/rails/basement/
+nmap §s :w<cr>
+nmap zq :q<cr>
+nmap zh :set hlsearch!<CR>
+nmap zs :Gstatus<cr>
+nmap zc rGcommit<cr>
+nmap zr :mksession<cr>
 " set tildeop
-set guifont=Menlo\ Regular:h20
+set guifont=Monaco:h17
 set lines=32 columns=117
 set tabstop=2
 set softtabstop=2
 set expandtab
 set shiftwidth=2
-set scrolloff=3 " Minimal Number of visible Lines before/after the cursor
+set scrolloff=300 " Minimal Number of visible Lines before/after the cursor
 set autoindent
 set showmode
 set showcmd
 set wildmenu
 set wildmode=list:longest
-set visualbell
+" set visualbell
 set ttyfast
 set ruler
 set backspace=indent,eol,start
@@ -65,13 +93,14 @@ map <C-j> <F5>
 nnoremap <C-L> ]m
 "map <C-\> ]m
 "map <C-j> ]m
-map <D-]> ]m
-map <D-[> [m
+map <D-]> ]q
+map <D-[> [q
 map <C-k> [m
 map <C-'> [m
-map <tab> ]m
+imap <C-Space> <C-n>
+imap <D-1> <C-n>
 map <C-\> :let @/ = ""<cr>
-
+imap <tab> <c-n>
 "nmap <M-Tab> [m<CR>
 nnoremap <leader><space> :noh<cr>
 "nnoremap <tab> %
@@ -84,34 +113,54 @@ nnoremap <leader><space> :noh<cr>
 "thisnau InsertLeave * hi StatusLine guibg=#43c464 guifg=#ffffff ctermbg=green
 highlight LineNr ctermfg=grey
 
-"map! ;; <ESC>
-"map! jj <ESC>
-map <C-n> :NERDTreeToggle<CR>
-map <C-p> :CommandT<CR>
-map <C-b> :CommandTBuffer<CR>
+" noremap zn :NERDTreeToggle<CR>
+" noremap zf :NERDTreeFind<cr>
+" nmap <C-p> :CommandT<CR>
 highlight PmenuSel ctermbg=LightBlue
 "highlight Normal guibg=Black guifg=White
 
-"nnoremap <up> <nop>
-"nnoremap <down> <nop>
-"nnoremap <left> <nop>
-"nnoremap <right> <nop>
-"inoremap <up> <nop>
-"inoremap <down> <nop>
-"inoremap <left> <nop>
-"inoremap <right> <nop>
+
+
+
+
+
+
+nnoremap <up> <nop>
+nnoremap <down> <nop>
+nnoremap <left> <nop>
+nnoremap <right> <nop>
+inoremap <up> <nop>
+inoremap <down> <nop>
+inoremap <left> <nop>
+inoremap <right> <c-x><c-o>
 nnoremap j gj
 nnoremap k gk
 " Swap ; and :  Convenient.
 nnoremap ; :
-nnoremap : ;
+" nnoremap : <ESC><ESC> "bell if pressed
 inoremap <D-/> <ESC>
-map <F7> :call CommentToggle()<CR>
 
 "COLORS
 set t_Co=256 "make use of 256 colors
 "color railscasts
-color summerfruit256
+" color summerfruit256
+color tomorrow-night
+" color blackboard
+" color github
+" color solarized
+" Define color schemes 
+" let g:dtcNightScheme = "summerfruit256" 
+" let g:dtcDayScheme = "tomorrow-night" 
+" " Set coordinates of your place 
+" let g:dtcLatitude = 52.524268 
+" let g:dtcLongitude = 13.406290 
+" " Set your timezone 
+" let g:dtcTimeOffset = 2 
+
+" Enable automatic color refresh (updates color scheme without restarting vim, but may use some extra resources) 
+" let g:dtcAutoRefresh = 1 
+nnoremap <silent> <Leader>ew :color summerfruit256<CR>
+nnoremap <silent> <Leader>eb :color tomorrow-night<CR>
 
 syntax on             " Enable syntax highlighting
 filetype on           " Enable filetype detection
@@ -142,19 +191,25 @@ set nocompatible
  " let Vundle manage Vundle
  " required
  Bundle 'gmarik/vundle'
+ Bundle "pangloss/vim-javascript"
 
 " My Bundles here:
 "
 " original repos on github
 Bundle 'tpope/vim-fugitive'
-Bundle 'Lokaltog/vim-easymotion'
-Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
+" Bundle 'Lokaltog/vim-easymotion'
+" Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
 Bundle 'tpope/vim-rails.git'
 " vim-scripts repos
-Bundle 'L9'
-Bundle 'FuzzyFinder'
+Bundle 'https://github.com/tpope/vim-surround.git'
+" Bundle 'L9'
 " non github repos
-Bundle 'git://git.wincent.com/command-t.git'
+" Bundle 'git://git.wincent.com/command-t.git'
+" Bundle 'git://github.com/scrooloose/nerdcommenter.git'
+Bundle 'https://github.com/tomtom/tcomment_vim.git'
+Bundle 'https://github.com/tpope/vim-unimpaired.git'
+Bundle 'https://github.com/vim-scripts/DayTimeColorer.git'
+
 " git repos on your local machine (ie. when working on your own plugin)
 "Bundle 'file:///Users/gmarik/path/to/plugin'
 " ...
@@ -162,7 +217,8 @@ Bundle 'git://git.wincent.com/command-t.git'
 Bundle 'vim-ruby/vim-ruby'
 Bundle 'kien/ctrlp.vim'
 Bundle 'scrooloose/nerdtree'
- "Bundle 'git://github.com/vim-ruby/vim-ruby.git'
+Bundle 'vim-scripts/grep.vim'
+"https://github.com/vim-scripts/grep.vim
  "filetype plugin indent on     " required!
  "
  " Brief help
@@ -173,10 +229,10 @@ Bundle 'scrooloose/nerdtree'
  "
  " see :h vundle for more details or wiki for FAQ
  " NOTE: comments after Bundle command are not allowed..
-
 Bundle 'rking/ag.vim'
 Bundle 'bling/vim-airline'
-"   
+Bundle 'https://github.com/godlygeek/tabular.git'
+"
 "   function! HighlightSearch()
 "     if &hls
 "       return 'H'
@@ -184,7 +240,7 @@ Bundle 'bling/vim-airline'
 "       return ''
 "     endif
 "   endfunction
-"   
+"
 "   hi User1 guifg=#ffdad8  guibg=#880c0e ctermfg=white  ctermbg=1
 "   hi User2 guifg=#000000  guibg=#F4905C ctermfg=white  ctermbg=2
 "   hi User3 guifg=#292b00  guibg=#f4f597 ctermfg=white  ctermbg=3
@@ -194,8 +250,8 @@ Bundle 'bling/vim-airline'
 "   hi User8 guifg=#ffffff  guibg=#5b7fbb ctermfg=white  ctermbg=7
 "   hi User9 guifg=#ffffff  guibg=#810085 ctermfg=white  ctermbg=8
 "   hi User0 guifg=#ffffff  guibg=#094afe ctermfg=white  ctermbg=4
-"   
-"   
+"
+"
 "   set statusline=
 "   set statusline+=%7*\[%n]                                  "buffernr
 "   set statusline+=%1*\ %<%F\                                "File+path
@@ -210,10 +266,19 @@ Bundle 'bling/vim-airline'
 "   "highlight OverLength ctermbg=red ctermfg=white guibg=#f4f597
 "   "match OverLength /\%81v.\+/
 
-match ErrorMsg '\%>80v.\+'
+" match ErrorMsg '\%>80v.\+'
+" match ErrorMsg '\%>80v.\+'
+" match ErrorMsg '\TODO\+'
+" set colorcolumn=80
+
+highlight Todos ctermbg=green ctermfg=black guibg=green guifg=black
+" match MyGroup /TODO/
+au BufWinEnter * let w:m1=matchadd('Todos', '\TODO', -1)
+au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1) "Long Lines Red
+" au BufWinEnter * let w:m3=matchadd('ErrorMsg', '\t', -1) "Tabs RED
 "if exists('+colorcolumn')
 "     set colorcolumn=80
-"else
+	"else
 "    au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
 "endif
 "
@@ -221,3 +286,77 @@ match ErrorMsg '\%>80v.\+'
 "
 
 " let g:airline_theme='light'
+"
+" Bubble single lines
+nmap <C-Up> [e
+nmap <C-Down> ]e
+" Bubble multiple lines
+vmap <C-Up> [egv
+vmap <C-Down> ]egv
+
+
+" Jump to the next or previous line that has the same level or a lower
+" level of indentation than the current line.
+"
+" exclusive (bool): true: Motion is exclusive
+" false: Motion is inclusive
+" fwd (bool): true: Go to next line
+" false: Go to previous line
+" lowerlevel (bool): true: Go to line with lower indentation level
+" false: Go to line with the same indentation level
+" skipblanks (bool): true: Skip blank lines
+" false: Don't skip blank lines
+function! NextIndent(exclusive, fwd, lowerlevel, skipblanks)
+  let line = line('.')
+  let column = col('.')
+  let lastline = line('$')
+  let indent = indent(line)
+  let stepvalue = a:fwd ? 1 : -1
+  while (line > 0 && line <= lastline)
+    let line = line + stepvalue
+    if ( ! a:lowerlevel && indent(line) == indent ||
+          \ a:lowerlevel && indent(line) < indent)
+      if (! a:skipblanks || strlen(getline(line)) > 0)
+        if (a:exclusive)
+          let line = line - stepvalue
+        endif
+        exe line
+        exe "normal " column . "|"
+        return
+      endif
+    endif
+  endwhile
+endfunction
+
+" Moving back and forth between lines of same or lower indentation.
+nnoremap <silent> [l :call NextIndent(0, 0, 0, 1)<CR>
+nnoremap <silent> ]l :call NextIndent(0, 1, 0, 1)<CR>
+nnoremap <silent> [L :call NextIndent(0, 0, 1, 1)<CR>
+nnoremap <silent> ]L :call NextIndent(0, 1, 1, 1)<CR>
+vnoremap <silent> [l <Esc>:call NextIndent(0, 0, 0, 1)<CR>m'gv''
+vnoremap <silent> ]l <Esc>:call NextIndent(0, 1, 0, 1)<CR>m'gv''
+vnoremap <silent> [L <Esc>:call NextIndent(0, 0, 1, 1)<CR>m'gv''
+vnoremap <silent> ]L <Esc>:call NextIndent(0, 1, 1, 1)<CR>m'gv''
+onoremap <silent> [l :call NextIndent(0, 0, 0, 1)<CR>
+onoremap <silent> ]l :call NextIndent(0, 1, 0, 1)<CR>
+onoremap <silent> [L :call NextIndent(1, 0, 1, 1)<CR>
+onoremap <silent> ]L :call NextIndent(1, 1, 1, 1)<CR>
+
+" Auto source the vimrc file after saving it
+if has("autocmd")
+  autocmd bufwritepost .vimrc source $MYVIMRC
+endif
+
+" 
+" Netrw Preview files within vertical split
+let g:netrw_preview = 1
+
+
+nnoremap <leader>bd :bd<cr>
+nnoremap <leader>\<cr> :Explore<cr>
+nnoremap <leader>so :source $MYVIMRC<CR>
+inoremap § <ESC>
+
+noremap <leader><cr>   :NERDTreeToggle<CR>
+noremap ]<cr>   :NERDTreeFind<CR>
+autocmd FileType go autocmd BufWritePre <buffer> Fmt

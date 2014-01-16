@@ -1,5 +1,6 @@
 alias gg="git log --graph --pretty=oneline --abbrev-commit"
 alias ..="cd .."
+alias md="mkdir"
 #
 # shortcut to this dotfiles path is $ZSH
 export ZSH=$HOME/.dotfiles
@@ -42,4 +43,6 @@ done
 
 unset config_files
 
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+export GOPATH=$HOME/go
+export GOROOT=/usr/local/go
+PATH=$PATH:$HOME/.rvm/bin:$GOPATH/bin # Add RVM to PATH for scriptinghhh
