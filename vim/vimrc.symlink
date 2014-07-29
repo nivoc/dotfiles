@@ -185,39 +185,39 @@ set nocompatible
 
 " set relativenumber
 
- set rtp+=~/.vim/bundle/vundle/
- call vundle#rc()
+ set rtp+=~/.vim/bundle/vundle.vim/
+ call vundle#begin()
 
  " let Vundle manage Vundle
  " required
- Bundle 'gmarik/vundle'
- Bundle "pangloss/vim-javascript"
+ Plugin 'gmarik/vundle'
+ Plugin 'pangloss/vim-javascript'
 
 " My Bundles here:
 "
 " original repos on github
-Bundle 'tpope/vim-fugitive'
+Plugin 'tpope/vim-fugitive'
 " Bundle 'Lokaltog/vim-easymotion'
 " Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
-Bundle 'tpope/vim-rails.git'
+Plugin 'tpope/vim-rails.git'
 " vim-scripts repos
-Bundle 'https://github.com/tpope/vim-surround.git'
+Plugin 'https://github.com/tpope/vim-surround.git'
 " Bundle 'L9'
 " non github repos
 " Bundle 'git://git.wincent.com/command-t.git'
 " Bundle 'git://github.com/scrooloose/nerdcommenter.git'
-Bundle 'https://github.com/tomtom/tcomment_vim.git'
-Bundle 'https://github.com/tpope/vim-unimpaired.git'
-Bundle 'https://github.com/vim-scripts/DayTimeColorer.git'
+Plugin 'https://github.com/tomtom/tcomment_vim.git'
+Plugin 'https://github.com/tpope/vim-unimpaired.git'
+Plugin 'https://github.com/vim-scripts/DayTimeColorer.git'
 
 " git repos on your local machine (ie. when working on your own plugin)
 "Bundle 'file:///Users/gmarik/path/to/plugin'
 " ...
 "RUBY
-Bundle 'vim-ruby/vim-ruby'
-Bundle 'kien/ctrlp.vim'
-Bundle 'scrooloose/nerdtree'
-Bundle 'vim-scripts/grep.vim'
+Plugin 'vim-ruby/vim-ruby'
+Plugin 'kien/ctrlp.vim'
+Plugin 'scrooloose/nerdtree'
+Plugin 'vim-scripts/grep.vim'
 "https://github.com/vim-scripts/grep.vim
  "filetype plugin indent on     " required!
  "
@@ -229,9 +229,9 @@ Bundle 'vim-scripts/grep.vim'
  "
  " see :h vundle for more details or wiki for FAQ
  " NOTE: comments after Bundle command are not allowed..
-Bundle 'rking/ag.vim'
-Bundle 'bling/vim-airline'
-Bundle 'https://github.com/godlygeek/tabular.git'
+Plugin 'rking/ag.vim'
+Plugin 'bling/vim-airline'
+Plugin 'https://github.com/godlygeek/tabular.git'
 "
 "   function! HighlightSearch()
 "     if &hls
