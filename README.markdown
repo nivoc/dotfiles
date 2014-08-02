@@ -21,7 +21,7 @@ time to time to keep your environment fresh and up-to-date. You can find
 this script in `bin/`.
 
 ## Thanks
-I forked Zach Holman's excellent dotfiles a couple of years ago. If you're 
+I forked Zach Holman's excellent dotfiles some time ago. If you're 
 interested in the philosophy behind why projects like these are
 awesome, you might want to [read his post on the
 subject](http://zachholman.com/2010/08/dotfiles-are-meant-to-be-forked/).
