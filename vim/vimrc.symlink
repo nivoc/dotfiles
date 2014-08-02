@@ -1,64 +1,18 @@
-" Some Linux distributions set filetype in /etc/vimrc.
-" Clear filetype flags before changing runtimepath to force Vim to reload them.
-filetype off
-filetype plugin indent off
+" 
+filetype plugin indent off "clear cache and enable at the end again
+
 set runtimepath+=$GOROOT/misc/vim
-filetype plugin indent on
-syntax on
-"
-" Disable Macvim-Scrollbars
-set guioptions-=mlrbLRT
-set guioptions-=r
-set guioptions-=l
-set guioptions-=L
-set guioptions=c
-" Map sparkup expanding to command-e
-let g:sparkupExecuteMapping="<D-e>"
 
-" disable vim autocomment
-autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
-
-" Create Blank Newlines and stay in Normal mode
-nnoremap <silent> zj o<Esc>k
-nnoremap <silent> zk O<Esc>j
-nnoremap ]q :cnext<cr>
-nnoremap [q :cprev<cr>
-nnoremap ]Q :clast<cr>
-nnoremap [Q :cfirst<cr>
-
-" Space will toggle folds!
-nnoremap <space> za
-
-inoremap jj <Esc>
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/.git/*
-let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
-let g:ctrlp_working_path_mode='ra'
-" let g:ctrlp_cmd = 'CtrlPMixed'
-
-nnoremap <C-p> :CtrlP<CR>
-nnoremap <C-b> :CtrlPBuffer<CR>
-nnoremap <C-m> :CtrlPMixed<CR>
-nnoremap <CR> :CtrlPBuffer<CR>
-"set autochdir
-nnoremap ` <C-W><C-W>
-" Edit vimrc \ev
-nnoremap <silent> <Leader>ev :tabedit $MYVIMRC<CR>
-nnoremap <silent> <Leader>so :source $MYVIMRC<CR>
-nmap §b :cd ~/Projects/rails/basement/
-nmap §s :w<cr>
-nmap zq :q<cr>
-nmap zh :set hlsearch!<CR>
-nmap zs :Gstatus<cr>
-nmap zc rGcommit<cr>
-nmap zr :mksession<cr>
+" SETTINGS """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " set tildeop
+" Disable backwards compatibility - Necesary for lots of cool vim things
+set nocompatible
 set guifont=Monaco:h17
-set lines=32 columns=117
 set tabstop=2
 set softtabstop=2
 set expandtab
 set shiftwidth=2
-set scrolloff=300 " Minimal Number of visible Lines before/after the cursor
+set scrolloff=10 " Minimal Number of visible Lines before/after the cursor
 set autoindent
 set showmode
 set showcmd
@@ -71,292 +25,124 @@ set backspace=indent,eol,start
 set laststatus=2
 set ignorecase
 set smartcase
-"set gdefault
-"
-map ,, :FufFile<cr>
-map §§ :buffer<cr>
-map <c-h>h :FufCoverageFile<cr>
-map <c-h>b :FufBuffer<cr>
-map <c-h>f :FufFile<cr>
+set number
+set hidden
+set incsearch " Enable search while type
+set hlsearch " Highlight all search matches
+" set relativenumber
+set laststatus=1 "disable bottom bar
 
-" zs Speichert merkt sich alle offenen Fenster (Session), speichert und
-" schliesst VIM, zr stellt die Session wieder her
-map zs :mksession! ~/.vimsession<cr>
-map zl :mksession<cr>
-map §r :source ~/.vimsession<cr>
+" VUNDLE """"""""""""""""""""""""""""""""""""""""""""""""""""
+filetype off                  " required
 
-"enable shift+enter to post an end
-imap <S-CR> <CR><CR>end<Esc>-cc
-map <C-j> <F5>
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
+" let Vundle manage Vundle, required
+Plugin 'gmarik/Vundle.vim'
 
-nnoremap <C-L> ]m
-"map <C-\> ]m
-"map <C-j> ]m
-map <D-]> ]q
-map <D-[> [q
-map <C-k> [m
-map <C-'> [m
-imap <C-Space> <C-n>
-imap <D-1> <C-n>
-map <C-\> :let @/ = ""<cr>
+" Fugitive - a Git wrapper so awesome, it should be illegal
+Plugin 'tpope/vim-fugitive'
+
+" Surround - quoting/parenthesizing made simple
+Plugin 'tpope/vim-surround'
+
+" Unimpaired - pairs of handy bracket mappings
+Plugin 'tpope/vim-unimpaired'
+" Bubble single lines
+nmap <C-k> [e
+nmap <C-j> ]e
+" Bubble multiple lines
+vmap <C-k> [egv
+vmap <C-j> ]egv
+
+"tcomment - An extensible & universal comment vim-plugin: gcc for commenting out
+Plugin 'tomtom/tcomment_vim'
+
+"Ctrlp - Fuzzy file, buffer, mru, tag
+Plugin 'kien/ctrlp.vim'
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/.git/*
+let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+let g:ctrlp_working_path_mode='ra'
+" let g:ctrlp_cmd = 'CtrlPMixed'
+"reviewed till here
+nnoremap <C-p> :CtrlP<CR>
+nnoremap <C-b> :CtrlPBuffer<CR>
+nnoremap <C-m> :CtrlPMixed<CR>
+nnoremap <CR> :CtrlPBuffer<CR>
+
+"Nerdtree - tree explorer plugin for vim.
+Plugin 'scrooloose/nerdtree'
+noremap <leader><cr>   :NERDTreeToggle<CR>
+
+"Vim plugin for the_silver_searcher, 'ag', a replacement for the Perl module / CLI script 'ack'
+Plugin 'rking/ag.vim'
+
+"Plugin 'bling/vim-airline'
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+" VUNDLE END  """"""""""""""""""""""""""""""""""""""""""""""""
+
+" Disable Macvim-Scrollbars
+set guioptions-=mlrbLRT
+set guioptions-=r
+set guioptions-=l
+set guioptions-=L
+set guioptions=c
+
+" SHORTCUTS """""""""""""""""""""""""""""""""""""""""""""""""
+" Space will toggle folds!
+" nnoremap <space> za
+" Edit vimrc \ev
+nnoremap <silent> <Leader>ev :tabedit $MYVIMRC<CR>
+
+nnoremap <space> 10<C-E>
+nnoremap ` <C-W><C-W>
+nmap zq :q<cr>
+nmap zh :set hlsearch!<CR>
+nmap zs :Gstatus<cr>
+nmap zc rGcommit<cr>
+nmap zr :mksession<cr>
 imap <tab> <c-n>
-"nmap <M-Tab> [m<CR>
-nnoremap <leader><space> :noh<cr>
-"nnoremap <tab> %
-"vnoremap <tab> %
-
-"au InsertEnter * hi LineNr ctermbg=darkRed
-"thisau InsertEnter * hi StatusLine guibg=white guifg=#eeeeee ctermbg=white
-" au InsertEnter * hi StatusLine guibg=Red
-"au InsertLeave * hi LineNr ctermbg=white
-"thisnau InsertLeave * hi StatusLine guibg=#43c464 guifg=#ffffff ctermbg=green
-highlight LineNr ctermfg=grey
-
-" noremap zn :NERDTreeToggle<CR>
-" noremap zf :NERDTreeFind<cr>
-" nmap <C-p> :CommandT<CR>
-highlight PmenuSel ctermbg=LightBlue
-"highlight Normal guibg=Black guifg=White
-
-
-
-
-
-
-
-nnoremap <up> <nop>
-nnoremap <down> <nop>
-nnoremap <left> <nop>
-nnoremap <right> <nop>
-inoremap <up> <nop>
-inoremap <down> <nop>
-inoremap <left> <nop>
-inoremap <right> <c-x><c-o>
-nnoremap j gj
-nnoremap k gk
-" Swap ; and :  Convenient.
 nnoremap ; :
-" nnoremap : <ESC><ESC> "bell if pressed
-inoremap <D-/> <ESC>
 
-"COLORS
+" nnoremap <up> <nop>
+" nnoremap <down> <nop>
+" nnoremap <left> <nop>
+" nnoremap <right> <nop>
+" inoremap <up> <nop>
+" inoremap <down> <nop>
+" inoremap <left> <nop>
+" Swap ; and :  Convenient.
+
+" THEME """""""""""""""""""""""""""""""""""""""""""""""""""""
 set t_Co=256 "make use of 256 colors
-"color railscasts
 " color summerfruit256
 color tomorrow-night
-" color blackboard
-" color github
-" color solarized
-" Define color schemes 
-" let g:dtcNightScheme = "summerfruit256" 
-" let g:dtcDayScheme = "tomorrow-night" 
-" " Set coordinates of your place 
-" let g:dtcLatitude = 52.524268 
-" let g:dtcLongitude = 13.406290 
-" " Set your timezone 
-" let g:dtcTimeOffset = 2 
 
-" Enable automatic color refresh (updates color scheme without restarting vim, but may use some extra resources) 
-" let g:dtcAutoRefresh = 1 
-nnoremap <silent> <Leader>ew :color summerfruit256<CR>
-nnoremap <silent> <Leader>eb :color tomorrow-night<CR>
+highlight Todos ctermbg=green ctermfg=black guibg=green guifg=black
+" match MyGroup /TODO/
+au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1) "Long Lines Red
+au BufWinEnter * let w:m1=matchadd('Todos', '\TODO', -1)
 
+" CONFIG AUTOCMD's """""""""""""""""""""""""""""""""""""""""
+" autocmd needs to be in a autocmd group with an unload autocmd! 
+" otherwise vim gets slower with every reload of the vimrc
+" http://stackoverflow.com/questions/15353988/progressively-slower-reloading-time-of-vimrc
+augroup Group1  
+  " Unload
+  autocmd!
+  " Auto source the vimrc file after saving it
+  autocmd bufwritepost .vimrc source $MYVIMRC
+  autocmd FileType go autocmd BufWritePre <buffer> Fmt
+augroup END
+
+
+" THE END """"""""""""""""""""""""""""""""""""""""""""""" 
 syntax on             " Enable syntax highlighting
 filetype on           " Enable filetype detection
 filetype indent on    " Enable filetype-specific indenting
 filetype plugin on    " Enable filetype-specific plugins
-
-" Show Linenumbers and color them grey
-set number
-" highlight LineNr ctermfg=grey
-" au InsertEnter * hi StatusLine guibg=Red
-" Allow switching unsaved buffers
-set hidden
-
-" Enable search while type
-set incsearch
-
-" Highlight all search matches
-set hlsearch
-
-" Necesary for lots of cool vim things
-set nocompatible
-
-" set relativenumber
-
- set rtp+=~/.vim/bundle/vundle.vim/
- call vundle#begin()
-
- " let Vundle manage Vundle
- " required
- Plugin 'gmarik/vundle'
- Plugin 'pangloss/vim-javascript'
-
-" My Bundles here:
-"
-" original repos on github
-Plugin 'tpope/vim-fugitive'
-" Bundle 'Lokaltog/vim-easymotion'
-" Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
-Plugin 'tpope/vim-rails.git'
-" vim-scripts repos
-Plugin 'https://github.com/tpope/vim-surround.git'
-" Bundle 'L9'
-" non github repos
-" Bundle 'git://git.wincent.com/command-t.git'
-" Bundle 'git://github.com/scrooloose/nerdcommenter.git'
-Plugin 'https://github.com/tomtom/tcomment_vim.git'
-Plugin 'https://github.com/tpope/vim-unimpaired.git'
-Plugin 'https://github.com/vim-scripts/DayTimeColorer.git'
-
-" git repos on your local machine (ie. when working on your own plugin)
-"Bundle 'file:///Users/gmarik/path/to/plugin'
-" ...
-"RUBY
-Plugin 'vim-ruby/vim-ruby'
-Plugin 'kien/ctrlp.vim'
-Plugin 'scrooloose/nerdtree'
-Plugin 'vim-scripts/grep.vim'
-"https://github.com/vim-scripts/grep.vim
- "filetype plugin indent on     " required!
- "
- " Brief help
- " :BundleList          - list configured bundles
- " :BundleInstall(!)    - install(update) bundles
- " :BundleSearch(!) foo - search(or refresh cache first) for foo
- " :BundleClean(!)      - confirm(or auto-approve) removal of unused bundles
- "
- " see :h vundle for more details or wiki for FAQ
- " NOTE: comments after Bundle command are not allowed..
-Plugin 'rking/ag.vim'
-Plugin 'bling/vim-airline'
-Plugin 'https://github.com/godlygeek/tabular.git'
-"
-"   function! HighlightSearch()
-"     if &hls
-"       return 'H'
-"     else
-"       return ''
-"     endif
-"   endfunction
-"
-"   hi User1 guifg=#ffdad8  guibg=#880c0e ctermfg=white  ctermbg=1
-"   hi User2 guifg=#000000  guibg=#F4905C ctermfg=white  ctermbg=2
-"   hi User3 guifg=#292b00  guibg=#f4f597 ctermfg=white  ctermbg=3
-"   hi User4 guifg=#112605  guibg=#aefe7B ctermfg=white  ctermbg=4
-"   hi User5 guifg=#051d00  guibg=#7dcc7d ctermfg=white  ctermbg=5
-"   hi User7 guifg=#ffffff  guibg=#880c0e ctermfg=white  ctermbg=6 gui=bold
-"   hi User8 guifg=#ffffff  guibg=#5b7fbb ctermfg=white  ctermbg=7
-"   hi User9 guifg=#ffffff  guibg=#810085 ctermfg=white  ctermbg=8
-"   hi User0 guifg=#ffffff  guibg=#094afe ctermfg=white  ctermbg=4
-"
-"
-"   set statusline=
-"   set statusline+=%7*\[%n]                                  "buffernr
-"   set statusline+=%1*\ %<%F\                                "File+path
-"   set statusline+=%2*\ %y\                                  "FileType
-"   set statusline+=%3*\ %{''.(&fenc!=''?&fenc:&enc).''}      "Encoding
-"   set statusline+=%3*\ %{(&bomb?\",BOM\":\"\")}\            "Encoding2
-"   set statusline+=%4*\ %{&ff}\                              "FileFormat (dos/unix..)
-"   set statusline+=%5*\ %{&spelllang}\%{HighlightSearch()}\  "Spellanguage & Highlight on?
-"   set statusline+=%8*\ %=\ row:%l/%L\ (%03p%%)\             "Rownumber/total (%)
-"   set statusline+=%9*\ col:%03c\                            "Colnr
-"   set statusline+=%0*\ \ %m%r%w\ %P\ \                      "Modified? Readonly? Top/bot
-"   "highlight OverLength ctermbg=red ctermfg=white guibg=#f4f597
-"   "match OverLength /\%81v.\+/
-
-" match ErrorMsg '\%>80v.\+'
-" match ErrorMsg '\%>80v.\+'
-" match ErrorMsg '\TODO\+'
-" set colorcolumn=80
-
-highlight Todos ctermbg=green ctermfg=black guibg=green guifg=black
-" match MyGroup /TODO/
-au BufWinEnter * let w:m1=matchadd('Todos', '\TODO', -1)
-au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1) "Long Lines Red
-" au BufWinEnter * let w:m3=matchadd('ErrorMsg', '\t', -1) "Tabs RED
-"if exists('+colorcolumn')
-"     set colorcolumn=80
-	"else
-"    au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
-"endif
-"
-"
-"
-
-" let g:airline_theme='light'
-"
-" Bubble single lines
-nmap <C-Up> [e
-nmap <C-Down> ]e
-" Bubble multiple lines
-vmap <C-Up> [egv
-vmap <C-Down> ]egv
-
-
-" Jump to the next or previous line that has the same level or a lower
-" level of indentation than the current line.
-"
-" exclusive (bool): true: Motion is exclusive
-" false: Motion is inclusive
-" fwd (bool): true: Go to next line
-" false: Go to previous line
-" lowerlevel (bool): true: Go to line with lower indentation level
-" false: Go to line with the same indentation level
-" skipblanks (bool): true: Skip blank lines
-" false: Don't skip blank lines
-function! NextIndent(exclusive, fwd, lowerlevel, skipblanks)
-  let line = line('.')
-  let column = col('.')
-  let lastline = line('$')
-  let indent = indent(line)
-  let stepvalue = a:fwd ? 1 : -1
-  while (line > 0 && line <= lastline)
-    let line = line + stepvalue
-    if ( ! a:lowerlevel && indent(line) == indent ||
-          \ a:lowerlevel && indent(line) < indent)
-      if (! a:skipblanks || strlen(getline(line)) > 0)
-        if (a:exclusive)
-          let line = line - stepvalue
-        endif
-        exe line
-        exe "normal " column . "|"
-        return
-      endif
-    endif
-  endwhile
-endfunction
-
-" Moving back and forth between lines of same or lower indentation.
-nnoremap <silent> [l :call NextIndent(0, 0, 0, 1)<CR>
-nnoremap <silent> ]l :call NextIndent(0, 1, 0, 1)<CR>
-nnoremap <silent> [L :call NextIndent(0, 0, 1, 1)<CR>
-nnoremap <silent> ]L :call NextIndent(0, 1, 1, 1)<CR>
-vnoremap <silent> [l <Esc>:call NextIndent(0, 0, 0, 1)<CR>m'gv''
-vnoremap <silent> ]l <Esc>:call NextIndent(0, 1, 0, 1)<CR>m'gv''
-vnoremap <silent> [L <Esc>:call NextIndent(0, 0, 1, 1)<CR>m'gv''
-vnoremap <silent> ]L <Esc>:call NextIndent(0, 1, 1, 1)<CR>m'gv''
-onoremap <silent> [l :call NextIndent(0, 0, 0, 1)<CR>
-onoremap <silent> ]l :call NextIndent(0, 1, 0, 1)<CR>
-onoremap <silent> [L :call NextIndent(1, 0, 1, 1)<CR>
-onoremap <silent> ]L :call NextIndent(1, 1, 1, 1)<CR>
-
-" Auto source the vimrc file after saving it
-if has("autocmd")
-  autocmd bufwritepost .vimrc source $MYVIMRC
-endif
-
-" 
-" Netrw Preview files within vertical split
-let g:netrw_preview = 1
-
-
-nnoremap <leader>bd :bd<cr>
-nnoremap <leader>\<cr> :Explore<cr>
-nnoremap <leader>so :source $MYVIMRC<CR>
-inoremap § <ESC>
-
-noremap <leader><cr>   :NERDTreeToggle<CR>
-noremap ]<cr>   :NERDTreeFind<CR>
-autocmd FileType go autocmd BufWritePre <buffer> Fmt
