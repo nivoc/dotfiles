@@ -121,7 +121,7 @@ nnoremap ; :
 " THEME """""""""""""""""""""""""""""""""""""""""""""""""""""
 set t_Co=256 "make use of 256 colors
 " color summerfruit256
-color tomorrow-night
+color Tomorrow-Night
 
 highlight Todos ctermbg=green ctermfg=black guibg=green guifg=black
 " match MyGroup /TODO/
