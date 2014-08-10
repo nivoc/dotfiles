@@ -1,5 +1,5 @@
-" 
-filetype plugin indent off "clear cache and enable at the end again
+"filetype plugin indent off "clear cache and enable at the end again
+filetype off                  " required
 
 set runtimepath+=$GOROOT/misc/vim
 
@@ -33,7 +33,6 @@ set hlsearch " Highlight all search matches
 set laststatus=1 "disable bottom bar
 
 " VUNDLE """"""""""""""""""""""""""""""""""""""""""""""""""""
-filetype off                  " required
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -50,6 +49,7 @@ Plugin 'tpope/vim-surround'
 
 " Unimpaired - pairs of handy bracket mappings
 Plugin 'tpope/vim-unimpaired'
+
 " Bubble single lines
 nmap <C-k> [e
 nmap <C-j> ]e
@@ -85,7 +85,6 @@ Plugin 'fatih/vim-go'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
-filetype plugin indent on    " required
 " VUNDLE END  """"""""""""""""""""""""""""""""""""""""""""""""
 
 " Disable Macvim-Scrollbars
@@ -139,12 +138,9 @@ augroup Group1
   autocmd!
   " Auto source the vimrc file after saving it
   autocmd bufwritepost .vimrc source $MYVIMRC
-  autocmd FileType go autocmd BufWritePre <buffer> Fmt
+  "autocmd FileType go autocmd BufWritePre <buffer> Fmt
 augroup END
-
 
 " THE END """"""""""""""""""""""""""""""""""""""""""""""" 
 syntax on             " Enable syntax highlighting
-filetype on           " Enable filetype detection
-filetype indent on    " Enable filetype-specific indenting
-filetype plugin on    " Enable filetype-specific plugins
+filetype plugin indent on
