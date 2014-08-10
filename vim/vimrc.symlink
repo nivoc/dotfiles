@@ -66,7 +66,6 @@ let g:ctrlp_working_path_mode='ra'
 " let g:ctrlp_cmd = 'CtrlPMixed'
 "reviewed till here
 nnoremap <C-p> :CtrlP<CR>
-nnoremap <C-b> :CtrlPBuffer<CR>
 nnoremap <C-m> :CtrlPMixed<CR>
 nnoremap <CR> :CtrlPBuffer<CR>
 
