@@ -1,8 +1,6 @@
 "filetype plugin indent off "clear cache and enable at the end again
 filetype off                  " required
 
-set runtimepath+=$GOROOT/misc/vim
-
 " SETTINGS """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " set tildeop
 " Disable backwards compatibility - Necesary for lots of cool vim things
@@ -138,7 +136,6 @@ augroup Group1
   autocmd!
   " Auto source the vimrc file after saving it
   autocmd bufwritepost .vimrc source $MYVIMRC
-  "autocmd FileType go autocmd BufWritePre <buffer> Fmt
 augroup END
 
 " THE END """"""""""""""""""""""""""""""""""""""""""""""" 
