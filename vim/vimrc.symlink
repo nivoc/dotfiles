@@ -99,11 +99,9 @@ nnoremap <silent> <Leader>ev :tabedit $MYVIMRC<CR>
 
 nnoremap <space> 10<C-E>
 nnoremap ` <C-W><C-W>
-nmap zq :q<cr>
-nmap zh :set hlsearch!<CR>
 nmap zs :Gstatus<cr>
 nmap zc rGcommit<cr>
-nmap zr :mksession<cr>
+nmap zx :noh<cr>
 imap <tab> <c-n>
 nnoremap ; :
 
