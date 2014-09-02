@@ -73,6 +73,9 @@ bind ^J select-pane -t :.+
 unbind r
 bind r source-file ~/.tmux.conf \; display "Reloaded!"
 
+# Mouse
+setw -g mode-mouse on
+
 ###########################
 # Status Bar
 ###########################
