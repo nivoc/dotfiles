@@ -43,6 +43,9 @@ done
 
 unset config_files
 
-export GOPATH=$HOME/go
+export GOPATH=$HOME/Documents/Projects/go
 export GOROOT=/usr/local/go
 PATH=$PATH:$HOME/.rvm/bin:$GOPATH/bin # Add RVM to PATH for scriptinghhh
+PATH=~/go_appengine:$PATH # Add go appengine
+PATH=~/.node/bin:$PATH
+ 
