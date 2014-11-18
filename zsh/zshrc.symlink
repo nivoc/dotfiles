@@ -1,12 +1,9 @@
-alias gg="git log --graph --pretty=oneline --abbrev-commit"
-alias ..="cd .."
-alias md="mkdir"
 #
 # shortcut to this dotfiles path is $ZSH
 export ZSH=$HOME/.dotfiles
 
 # your project folder that we can `c [tab]` to
-export PROJECTS=~/Projects
+export PROJECTS=~/workspace
 
 # use .localrc for SUPER SECRET CRAP that you don't
 # want in your public, versioned repo.
@@ -43,9 +40,3 @@ done
 
 unset config_files
 
-export GOPATH=$HOME/Documents/Projects/go
-export GOROOT=/usr/local/go
-PATH=$PATH:$HOME/.rvm/bin:$GOPATH/bin # Add RVM to PATH for scriptinghhh
-PATH=~/go_appengine:$PATH # Add go appengine
-PATH=~/.node/bin:$PATH
- 
