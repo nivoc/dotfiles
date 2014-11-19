@@ -89,7 +89,7 @@ directory_name(){
 
 export PROMPT=$'\n%n@%m $(directory_name)$(git_dirty)\n%{$fg_bold[grey]%}$%{$reset_color%} '
 set_prompt () {
-  export RPROMPT='%{$(echotc UP 1)%}%{$fg[grey]%}%}%D{%a %H:%M}%{$reset_color%}%{$(echotc DO 1)%}%{$reset_color%}'
+  export RPROMPT='%{$(echotc UP 1)%}%{$FG[111]%}%}%D{%a %H:%M}%{$reset_color%}%{$(echotc DO 1)%}%{$reset_color%}'
 }
 
 precmd() {
