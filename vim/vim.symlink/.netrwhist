@@ -1,5 +1,9 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =3
+let g:netrw_dirhist_cnt =7
 let g:netrw_dirhist_1='/Users/matthias/Projects/esupload/todo'
 let g:netrw_dirhist_2='/Users/matthias/Documents/notes'
 let g:netrw_dirhist_3='/Users/matthias/Projects/esupload'
+let g:netrw_dirhist_4='/Users/matthias/mls/color-setting'
+let g:netrw_dirhist_5='/Users/matthias/mls/3landing'
+let g:netrw_dirhist_6='/Users/matthias/mls/embed-in-legacy'
+let g:netrw_dirhist_7='/Users/matthias/Projects/crowslookout'

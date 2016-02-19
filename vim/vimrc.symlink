@@ -5,6 +5,7 @@ filetype off                  " required
 " set tildeop
 " Disable backwards compatibility - Necesary for lots of cool vim things
 set nocompatible
+set suffixesadd=.jsx,.js,.less
 set guifont=Monaco:h17
 set tabstop=2
 set softtabstop=2
@@ -60,9 +61,11 @@ Plugin 'tomtom/tcomment_vim'
 
 "Ctrlp - Fuzzy file, buffer, mru, tag
 Plugin 'kien/ctrlp.vim'
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/.git/*
+set wildignore+=*node_modules/*,*/tmp/*,*.so,*.swp,*.zip,*/.git/*
 let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
 let g:ctrlp_working_path_mode='ra'
+nmap <leader>gf :CtrlP<CR><C-\>w
+
 " let g:ctrlp_cmd = 'CtrlPMixed'
 "reviewed till here
 nnoremap <C-p> :CtrlP<CR>
