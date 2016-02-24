@@ -12,7 +12,7 @@
         wtf     = !$ZSH/bin/git-wtf
         rank-contributers = !$ZSH/bin/git-rank-contributers
         count   = !git shortlog -sn
-  lg = git log --color --graph --date=format:%d%b%kh --pretty=format:'%Cred%h%Creset %cd%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+  lg = log --color --graph --date=format:%d%b%kh --pretty=format:'%Cred%h%Creset %cd%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
 	st = status -sb
 	co = checkout
         s = status
