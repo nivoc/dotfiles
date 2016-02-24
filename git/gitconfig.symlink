@@ -1,8 +1,8 @@
 [hub]
         protocol = https
 [user]
-        name = nivoc
-        email = kuehnle@online.de
+        name = Matthias Kuehnle
+        email = mak@marketlogicsoftware.com
 [credential]
         helper = osxkeychain
 [alias]
@@ -12,7 +12,7 @@
         wtf     = !$ZSH/bin/git-wtf
         rank-contributers = !$ZSH/bin/git-rank-contributers
         count   = !git shortlog -sn
-	lg = log --color --graph --pretty=format:'%Cred%h%Creset-%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+  lg = git log --color --graph --date=format:%d%b%kh --pretty=format:'%Cred%h%Creset %cd%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
 	st = status -sb
 	co = checkout
         s = status
